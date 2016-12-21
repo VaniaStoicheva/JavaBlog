@@ -18,6 +18,8 @@ import softuniBlog.repository.ArticleRepository;
 import softuniBlog.repository.CommentRepository;
 import softuniBlog.repository.UserRepository;
 
+import java.util.Set;
+
 @Controller
 public class CommentController {
 
@@ -32,9 +34,11 @@ public class CommentController {
 
     @GetMapping("/comment/create/{id}")
     @PreAuthorize("isAuthenticated()")
-    public String create(Model model){
-       // Article article=this.articleRepository.findOne(id);
-        //model.addAttribute("article",article);
+    public String create(Model model,@PathVariable Integer id){
+
+       Article article=this.articleRepository.findOne(id);
+
+        model.addAttribute("article",article);
         model.addAttribute("view","comment/create");
 
         return "base-layout";
@@ -49,7 +53,7 @@ public class CommentController {
 
         User userEntity=this.userRepository.findByEmail(user.getUsername());
 
-Article article=this.articleRepository.findOne(id);
+        Article article=this.articleRepository.findOne(id);
 
 
         Comment commentEntity=new Comment(
@@ -63,4 +67,20 @@ Article article=this.articleRepository.findOne(id);
 
         return "redirect:/";
     }
+@GetMapping("/comment/{id}")
+public String listComments(Model model,@PathVariable Integer id){
+
+    if(!this.commentRepository.exists(id)){
+        return "redirect:/";
+    }
+
+    Article article=this.articleRepository.findOne(id);
+    Set<Comment> comments=this.articleRepository.findOne(id).getComments();
+
+    model.addAttribute("article",article);
+    model.addAttribute("comments",comments);
+    model.addAttribute("view","comment/list-comment");
+
+    return "base-layout";
+}
 }

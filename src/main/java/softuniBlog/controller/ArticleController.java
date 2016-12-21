@@ -88,13 +88,15 @@ public class ArticleController {
         Category category=this.categoryRepository.findOne(articleBindingModel.getCategoryId());
 
         HashSet<Tag> tags=this.findTagsFromString(articleBindingModel.getTagString());
-        //HashSet<Comment> comments=this.commentRepository.findAll(commentRepository.);
+        List<Comment> comments=this.commentRepository.findAll();
+
         Article articleEntity=new Article(
              articleBindingModel.getTitle(),
              articleBindingModel.getContent(),
                 userEntity,
                 category,
                 tags
+
         );
         this.articleRepository.saveAndFlush(articleEntity);
 

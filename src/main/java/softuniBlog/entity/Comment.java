@@ -30,6 +30,7 @@ public class Comment {
         this.id = id;
     }
     @Column(columnDefinition="text",nullable = false)
+
     public String getContent() {
         return content;
     }
@@ -37,6 +38,7 @@ public class Comment {
     public void setContent(String content) {
         this.content = content;
     }
+
     @ManyToOne()
     @JoinColumn(nullable = false,name="authorId")
     public User getAuthor() {

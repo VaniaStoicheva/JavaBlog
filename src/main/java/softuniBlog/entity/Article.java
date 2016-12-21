@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,13 +26,11 @@ public class Article {
         this.category=category;
         this.tags=tags;
 
-
-        this.comments=new HashSet<>();
-
     }
 
     public Article() {
     }
+
     @OneToMany
     public Set<Comment> getComments() {
         return comments;
