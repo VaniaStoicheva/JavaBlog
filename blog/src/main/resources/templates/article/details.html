@@ -17,6 +17,9 @@
                     </a>
                     </p>
 
+                   <!-- <div>
+                        <p th:text="${comment.content}"></p>
+                    </div>-->
                     <footer>
                         <div class="pull-right">
 
@@ -24,6 +27,7 @@
                                 <a class="btn btn-success btn-xs" th:href="@{/comment/create/{id}(id=${article.id})}">Create comment</a>
                             <a class="btn btn-success btn-xs" th:href="@{/article/edit/{id}(id = ${article.id})}">Edit</a>
                             <a class="btn btn-danger btn-xs" th:href="@{/article/delete/{id}(id = ${article.id})}">Delete</a>
+                                <a class="btn btn-primary btn-xs" th:href="@{/comment/list-comment/{id}(id=${article.id})}">View All Comment</a>
 
                             </th:block>
                             <a class="btn btn-default btn-xs" th:href="@{/}">back &raquo;</a>

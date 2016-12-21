@@ -15,14 +15,14 @@ public class ArticleBindingModel {
 
     private String tagString;
 
-    private String comment;
+    private String commentId;
 
-    public String getComment() {
-        return comment;
+    public String getCommentId() {
+        return commentId;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setCommentId(String commentId) {
+        this.commentId = commentId;
     }
 
     public String getTagString() {
